@@ -18,6 +18,7 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
 // TODO: Import the NewBankAccount message
+import com.redhat.training.bank.message.NewBankAccount;
 import com.redhat.training.bank.model.BankAccount;
 import com.redhat.training.bank.command.DepositAmountInBankAccount;
 import com.redhat.training.bank.command.WithdrawAmountFromBankAccount;
@@ -40,6 +41,8 @@ public class AccountResource {
     private static final Logger LOGGER = Logger.getLogger(AccountResource.class.getName());
 
     // TODO: Add an emitter for the bank account creation messages
+    @Inject @Channel("new-bank-account-out")
+    Emitter<NewBankAccount> emitter;
 
     @GET
     public List<BankAccount> get() {
@@ -210,11 +213,16 @@ public class AccountResource {
 
     private void sendMessageAboutNewBankAccount(BankAccount bankAccount)
     {
+        // TODO: Send a message about the new bank account
         LOGGER.info(
                 "New Bank Account - ID: " + bankAccount.id
                 + ", Balance: " + bankAccount.balance
         );
 
-        // TODO: Send a message about the new bank account
+        emitter.send(
+            new NewBankAccount(
+                    bankAccount.id,bankAccount.balance
+            )
+        );
     }
 }

@@ -10,6 +10,9 @@ public class HumidityConditionsConsumer {
 
     public HumidityStats stats = new HumidityStats();
 
-    // TODO: Implement the consumer method
-
+    @Incoming("humidityConditions")
+    public void consume(int humidityValue){
+        stats.add(humidityValue);
+        System.out.println("Received humidity value: " + humidityValue);
+    }
 }
