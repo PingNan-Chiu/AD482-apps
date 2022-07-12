@@ -8,9 +8,10 @@ import java.util.Properties;
 public class Config {
     protected static void configureConnectionSecurity(Properties props) {
         // TODO: configure the connection protocol
-
+        props.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "SSL");
         // TODO: configure the path to the truststore file
-
+        props.put(SslConfigs.SSL_TRUSTSTORE_LOCATION_CONFIG, "/home/student/AD482/truststore.jks");
         // TODO: configure the truststore password
+        props.put(SslConfigs.SSL_TRUSTSTORE_PASSWORD_CONFIG, "password");
     }
 }

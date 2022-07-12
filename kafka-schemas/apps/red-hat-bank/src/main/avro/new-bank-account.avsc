@@ -1,0 +1,9 @@
+{
+  "namespace": "com.redhat.training.bank.message",
+  "type": "record",
+  "name": "NewBankAccount",
+  "fields": [
+    { "name": "id", "type": "long" },
+    { "name": "balance", "type": "long" }
+  ]
+}
