@@ -38,7 +38,8 @@ public class ProducerApp {
             producer.send(record);
             printRecord(record);
             Thread.sleep(1000);
-            ProducerRecord
+
+            
         }
         producer.close();
 
